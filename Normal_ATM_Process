@@ -1,0 +1,72 @@
+class ATM:
+    def __init__(self):    #constructor
+       self.pin=''
+       self.balance=0
+
+    def menu(self):
+        user_input=input("""
+        Hi! How can i help sir?
+        1. Press 1 to create Pin
+        2. Press 2 to Change Pin
+        3. Press 3 to check Balance
+        4. Press 4 to withdraw Cash
+        5. Press anything to exit
+         """)
+
+        if user_input=='1':
+          self.create_pin()
+        elif user_input=='2':
+          self.change_pin()
+        elif user_input=='3':
+          self.check_balance()
+        elif user_input=='4':
+          self.withdraw_cash()
+        else:
+          exit()
+
+    def create_pin(self):
+      user_pin=int(input("Enter you pin:"))
+      self.pin=user_pin
+
+      user_balance=float(input("Enter balance:"))
+      self.balance=user_balance
+      print("Pin is sucessfully Created")
+      self.menu()
+    def change_pin(self):
+       old_pin=int(input("Enter your old pin:"))
+       if old_pin==self.pin:
+          new_pin=int(input("Enter you new pin:"))
+          self.pin=new_pin
+          print("Your Pin has been Changed")
+          self.menu()
+       else:
+          print("Wrong Pin!!")
+          print("Please Try Again")
+          self.menu()
+
+    def check_balance(self):
+        user_pin=int(input("Enter You Pin Please:"))
+        if user_pin==self.pin:
+           print("Your balance is NPR",self.balance)
+           self.menu()
+        else:
+           print("Please Enter correct Pin!")
+           self.menu()
+
+    def withdraw_cash(self):
+      user_pin=int(input("Enter the pin:"))
+      if user_pin==self.pin:
+        amount=float(input("Enter amount:"))
+        if amount<=self.balance:
+           self.balance=self.balance-amount
+           print("Your 0345###4561 has been Credited by NPR",amount)
+           print("Your Remaning balance is NPR",self.balance)
+           self.menu()
+        else:
+           print("You have not enough balance")
+           self.menu()
+
+      else:
+        print("Please Ente coorect Pin! ")
+
+        self.menu()
